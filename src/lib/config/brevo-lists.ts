@@ -8,4 +8,5 @@ export const BREVO_LIST_IDS = {
   waitlist_social_engagement_radar: 12, // Social Engagement Radar waitlist
   waitlist_policyforge: 5, // PolicyForge waitlist
   waitlist_govcon_leads_radar: 15, // GovCon Leads Radar waitlist
+  waitlist_cipherscan: 18, // CipherScan waitlist
 } as const;

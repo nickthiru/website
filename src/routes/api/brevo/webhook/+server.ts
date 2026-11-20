@@ -76,6 +76,9 @@ export const POST: RequestHandler = async ({ request }) => {
     if (attrs?.WAITLIST_GOVCON_LEADS_RADAR) {
       joinedWaitlists.push("govcon_leads_radar");
     }
+    if (attrs?.WAITLIST_CIPHERSCAN) {
+      joinedWaitlists.push("cipherscan");
+    }
 
     console.log("Webhook: Joined waitlists:", joinedWaitlists);
 
@@ -110,6 +113,12 @@ export const POST: RequestHandler = async ({ request }) => {
           body: { emails: [email] },
         });
       }
+      if (attrs?.WAITLIST_CIPHERSCAN) {
+        await brevoClient.contacts.addContactToList({
+          listId: BREVO_LIST_IDS.waitlist_cipherscan,
+          body: { emails: [email] },
+        });
+      }
 
       // Send consolidated notification email with boolean params
       const waitlistResult = await brevoClient.transactionalEmails.sendTransacEmail({
@@ -121,6 +130,7 @@ export const POST: RequestHandler = async ({ request }) => {
           joined_social_engagement_radar: !!attrs?.WAITLIST_SOCIAL_ENGAGEMENT_RADAR,
           joined_policyforge: !!attrs?.WAITLIST_POLICYFORGE,
           joined_govcon_leads_radar: !!attrs?.WAITLIST_GOVCON_LEADS_RADAR,
+          joined_cipherscan: !!attrs?.WAITLIST_CIPHERSCAN,
         },
       });
       console.log("Webhook: Waitlist email sent, messageId:", waitlistResult.messageId);

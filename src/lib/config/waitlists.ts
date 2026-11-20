@@ -11,6 +11,7 @@ export const PRODUCT_ATTR_MAP = {
   social_engagement_radar: "WAITLIST_SOCIAL_ENGAGEMENT_RADAR",
   policyforge: "WAITLIST_POLICYFORGE",
   govcon_leads_radar: "WAITLIST_GOVCON_LEADS_RADAR",
+  cipherscan: "WAITLIST_CIPHERSCAN",
 } as const;
 
 /**
@@ -21,6 +22,7 @@ export const PRODUCT_LABELS: Record<string, string> = {
   social_engagement_radar: "Social Engagement Radar",
   policyforge: "PolicyForge",
   govcon_leads_radar: "GovCon Leads Radar",
+  cipherscan: "CipherScan",
 } as const;
 
 /**

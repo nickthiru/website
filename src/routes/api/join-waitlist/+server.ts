@@ -153,6 +153,8 @@ export const POST: RequestHandler = async ({ request }) => {
         joined_social_engagement_radar:
           productAttr === "WAITLIST_SOCIAL_ENGAGEMENT_RADAR",
         joined_policyforge: productAttr === "WAITLIST_POLICYFORGE",
+        joined_govcon_leads_radar: productAttr === "WAITLIST_GOVCON_LEADS_RADAR",
+        joined_cipherscan: productAttr === "WAITLIST_CIPHERSCAN",
       },
     });
 
