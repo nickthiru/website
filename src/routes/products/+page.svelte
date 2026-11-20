@@ -86,16 +86,16 @@
 
                 {#snippet footer()}
                   <div class="flex gap-2">
-                    <a
-                      href="/products/{product.slug}"
-                      class="inline-flex items-center gap-1 px-3 py-1.5 bg-[#202020] dark:bg-neutral-700 text-white text-sm font-medium rounded-md hover:bg-[#fedf19] hover:text-[#fe1817] transition-colors"
-                    >
-                      Learn more
-                      <svg class="w-3 h-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                      </svg>
-                    </a>
                     {#if product.status === 'Building'}
+                      <a
+                        href="/products/{product.slug}"
+                        class="inline-flex items-center gap-1 px-3 py-1.5 bg-[#202020] dark:bg-neutral-700 text-white text-sm font-medium rounded-md hover:bg-[#fedf19] hover:text-[#fe1817] transition-colors"
+                      >
+                        Learn more
+                        <svg class="w-3 h-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                        </svg>
+                      </a>
                       <button
                         on:click={() => openWaitlist(product.title, product.waitlistId)}
                         class="inline-flex items-center gap-1 px-3 py-1.5 bg-[#fe1817] text-white text-sm font-medium rounded-md hover:bg-[#fedf19] hover:text-[#fe1817] transition-colors"
