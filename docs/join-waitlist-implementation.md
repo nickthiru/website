@@ -378,6 +378,7 @@ We'll notify you as soon as we launch!
 1. Brevo account with API key (from Settings → SMTP & API)
 2. Sender domain verified in Brevo
 3. `@getbrevo/brevo` SDK installed (`npm install @getbrevo/brevo`)
+4. **IP address restriction disabled** in Brevo (Settings → Security → Authorised IPs). Brevo's IP whitelisting is incompatible with Vercel's dynamic IP addresses — API calls will return `401 unauthorized` with an "unrecognised IP address" error if this is enabled. Disable it entirely; the API key alone provides sufficient security.
 
 ### Step 1: Configure Environment Variables
 
