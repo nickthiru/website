@@ -2,8 +2,8 @@
   import WaitlistModal from '$lib/components/WaitlistModal.svelte';
   import ProductCard from '$lib/components/ProductCard.svelte';
   import SEO from '$lib/components/SEO.svelte';
-  import { secureStackVision, secureStackProducts, studioLabProducts, getSecureStackProductsByPhase } from '$lib/config/products';
-  import type { StudioLabProduct } from '$lib/config/products';
+  import { secureStackVision, secureStackProducts, studioLabProducts, getSecureStackProductsByPhase, getStatusStyle } from '$lib/config/products';
+  import type { Product } from '$lib/config/products';
 
   let isWaitlistOpen = false;
   let selectedProduct = '';
@@ -54,11 +54,8 @@
     <div class="grid md:grid-cols-1 gap-6 items-stretch">
       
       <!-- SecureStack Suite -->
-      <ProductCard 
+      <ProductCard
         title={secureStackVision.title}
-        status={secureStackVision.status}
-        statusBg={secureStackVision.statusBg}
-        statusText={secureStackVision.statusText}
         padding="p-8"
         titleSize="text-2xl"
         faded={false}

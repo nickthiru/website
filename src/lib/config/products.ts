@@ -1,4 +1,4 @@
-export type ProductStatus = 'Building' | 'Idea' | 'Launched' | 'Suite Vision' | 'Parked' | 'Planned';
+export type ProductStatus = 'Building' | 'Idea' | 'Launched' | 'Parked' | 'Planned';
 
 export interface Product {
 	id: string;
@@ -13,6 +13,27 @@ export interface Product {
 	// Optional styling overrides for ProductCard
 	statusBg?: string;
 	statusText?: string;
+}
+
+/**
+ * Returns status badge styling for a given product status.
+ * Used by ProductCard to display visually distinct badges.
+ */
+export function getStatusStyle(status: ProductStatus): { statusBg: string; statusText: string } {
+	switch (status) {
+		case 'Building':
+			return { statusBg: 'bg-[#fedf19] dark:bg-[#fedf19]', statusText: 'text-[#202020] dark:text-neutral-900' };
+		case 'Planned':
+			return { statusBg: 'bg-blue-500 dark:bg-blue-500', statusText: 'text-white' };
+		case 'Parked':
+			return { statusBg: 'bg-neutral-400 dark:bg-neutral-500', statusText: 'text-white' };
+		case 'Idea':
+			return { statusBg: 'bg-neutral-300 dark:bg-neutral-600', statusText: 'text-neutral-700 dark:text-neutral-200' };
+		case 'Launched':
+			return { statusBg: 'bg-green-500 dark:bg-green-500', statusText: 'text-white' };
+		default:
+			return { statusBg: 'bg-neutral-300 dark:bg-neutral-600', statusText: 'text-neutral-700 dark:text-neutral-200' };
+	}
 }
 
 // SecureStack products - all phases as full Product entries
@@ -78,31 +99,39 @@ export const secureStackProducts: Product[] = [
 ];
 
 // Studio Lab products - explorations we've set aside (not actively developing)
-export interface StudioLabProduct {
-	id: string;
-	slug: string;
-	title: string;
-	shortDescription: string;
-}
-
-export const studioLabProducts: StudioLabProduct[] = [
+export const studioLabProducts: Product[] = [
 	{
 		id: 'social_engagement_radar',
 		slug: 'social-engagement-radar',
 		title: 'Social Engagement Radar',
-		shortDescription: 'Monitor X and LinkedIn conversations in real-time. Find relevant discussions about your topics of interest, get AI-drafted responses ready to review, edit, and send.'
+		status: 'Parked',
+		shortDescription: 'Monitor X and LinkedIn conversations in real-time. Find relevant discussions about your topics of interest, get AI-drafted responses ready to review, edit, and send.',
+		targetAudience: 'Founders, product managers, and community builders looking to participate authentically on X and LinkedIn',
+		waitlistId: 'social_engagement_radar',
+		order: 10,
+		featured: false
 	},
 	{
 		id: 'ops_pilot',
 		slug: 'ops-pilot',
 		title: 'OpsPilot',
-		shortDescription: 'SMBs will be able to run their entire business with the operational efficiency and intelligence previously available only to enterprises with dedicated accounting, finance, customer support, sales & marketing, and operations teams.'
+		status: 'Parked',
+		shortDescription: 'SMBs will be able to run their entire business with the operational efficiency and intelligence previously available only to enterprises with dedicated accounting, finance, customer support, sales & marketing, and operations teams.',
+		targetAudience: 'Business leaders and ops teams managing fast-growing companies (20–200 people)',
+		waitlistId: 'ops_pilot',
+		order: 11,
+		featured: false
 	},
 	{
 		id: 'govcon_leads_radar',
 		slug: 'govcon-leads-radar',
 		title: 'GovCon Leads Radar',
-		shortDescription: 'Turn raw USA federal contracting data into ranked, actionable lead lists. AI-driven tiering of USAspending.gov prospects, automated SAM.gov cross-referencing for compliance flags and POC data.'
+		status: 'Parked',
+		shortDescription: 'Turn raw USA federal contracting data into ranked, actionable lead lists. AI-driven tiering of USAspending.gov prospects, automated SAM.gov cross-referencing for compliance flags and POC data.',
+		targetAudience: 'GovCon sales/BD teams, compliance vendors, IT/engineering service providers, and any entity selling to the U.S. government',
+		waitlistId: 'govcon_leads_radar',
+		order: 12,
+		featured: false
 	}
 ];
 
@@ -113,9 +142,6 @@ export const products: Product[] = secureStackProducts.filter(p => p.featured);
 export interface SuiteVision {
 	id: string;
 	title: string;
-	status: 'Suite Vision';
-	statusBg: string;
-	statusText: string;
 	description: string;
 	phases: {
 		number: number;
@@ -134,9 +160,6 @@ export interface SuiteVision {
 export const secureStackVision: SuiteVision = {
 	id: 'secure_stack',
 	title: 'SecureStack',
-	status: 'Suite Vision',
-	statusBg: 'bg-[#202020] dark:bg-neutral-700',
-	statusText: 'text-white',
 	description: 'A modular AI-native cybersecurity compliance suite of products for regulated SMBs and the defense industry supply chain at large. Each product solves a specific bottleneck and reinforces the others, building a coherent story: <strong>"We assessed our gaps, generated policies, scanned our codebase for crypto vulnerabilities, and had everything organized for our auditor in 4 weeks — using one integrated suite."</strong>',
 	phases: [
 		{

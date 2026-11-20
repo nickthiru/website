@@ -2,8 +2,8 @@
   import WaitlistModal from '$lib/components/WaitlistModal.svelte';
   import ProductCard from '$lib/components/ProductCard.svelte';
   import SEO from '$lib/components/SEO.svelte';
-  import { secureStackVision, secureStackProducts, studioLabProducts, getSecureStackProductsByPhase } from '$lib/config/products';
-  import type { Product, StudioLabProduct } from '$lib/config/products';
+  import { secureStackVision, secureStackProducts, studioLabProducts, getSecureStackProductsByPhase, getStatusStyle } from '$lib/config/products';
+  import type { Product } from '$lib/config/products';
 
   let isWaitlistOpen = false;
   let selectedProduct = '';
@@ -61,14 +61,15 @@
       {#each secureStackVision.phases as phase}
         <!-- Phase {phase.number} -->
         <div class="mb-10">
-          <div class="flex items-center gap-3 mb-4">
+          <div class="flex items-center gap-3 mb-6">
             <div class="h-8 w-8 rounded-full bg-[#fe1817] text-white flex items-center justify-center text-sm font-bold">{phase.number}</div>
             <h4 class="text-md font-semibold text-neutral-700 dark:text-neutral-300">{phase.title}</h4>
           </div>
           
           <div class="grid md:grid-cols-2 gap-4">
             {#each getSecureStackProductsByPhase(phase.number) as product}
-              <ProductCard {product} padding="p-5" titleSize="text-lg" faded={false}>
+              {@const style = getStatusStyle(product.status)}
+              <ProductCard {product} status={product.status} statusBg={style.statusBg} statusText={style.statusText} padding="p-5" titleSize="text-lg" faded={false}>
                 <!-- Description section -->
                 <p class="text-neutral-600 dark:text-neutral-400 text-sm mb-4 leading-relaxed">
                   {product.shortDescription}
@@ -152,14 +153,20 @@
     
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
       {#each studioLabProducts as product}
-        <div class="bg-neutral-50 dark:bg-neutral-800/50 border border-neutral-200 dark:border-neutral-700 rounded-lg p-5 opacity-75">
-          <h3 class="text-lg font-semibold text-neutral-700 dark:text-neutral-300 mb-2">
-            {product.title}
-          </h3>
-          <p class="text-sm text-neutral-500 dark:text-neutral-400 leading-relaxed">
+        {@const style = getStatusStyle(product.status)}
+        <ProductCard {product} status={product.status} statusBg={style.statusBg} statusText={style.statusText} padding="p-5" titleSize="text-lg" faded={true}>
+          <p class="text-neutral-600 dark:text-neutral-400 text-sm leading-relaxed">
             {product.shortDescription}
           </p>
-        </div>
+          <div class="mb-4">
+            <h4 class="text-xs font-semibold text-neutral-700 dark:text-neutral-300 mb-1">
+              Who it's for
+            </h4>
+            <p class="text-neutral-600 dark:text-neutral-400 text-sm">
+              {product.targetAudience}
+            </p>
+          </div>
+        </ProductCard>
       {/each}
     </div>
     
