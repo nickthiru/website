@@ -121,10 +121,6 @@
           <a href="https://www.linkedin.com/in/nick-thiru" target="_blank" class="underline hover:no-underline font-semibold">
             LinkedIn
           </a>
-          {' '}and 
-          <a href="https://x.com/nickthiru" target="_blank" class="underline hover:no-underline font-semibold">
-            X/Twitter
-          </a>
           {' '}— see exactly how this product evolves.
         </p>
       </div>
@@ -172,8 +168,6 @@
       <p class="text-sm text-neutral-600 dark:text-neutral-400">
         <strong>Want to know if these projects come back?</strong> Follow us on 
         <a href="https://www.linkedin.com/in/nick-thiru" target="_blank" class="text-[#fe1817] hover:underline font-medium">LinkedIn</a>
-        {' '}or 
-        <a href="https://x.com/nickthiru" target="_blank" class="text-[#fe1817] hover:underline font-medium">X/Twitter</a>
         {' '}for updates on all our work.
       </p>
     </div>
